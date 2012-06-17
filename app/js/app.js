@@ -1,7 +1,5 @@
 Em.ENV.VIEW_PRESERVES_CONTEXT = true;
 
-Ag = Em.Application.create();
-
 Ag.ApplicationController = Ember.Controller.extend();
 Ag.LoginController = Em.Controller.extend();
 Ag.MainController = Em.Controller.extend();
