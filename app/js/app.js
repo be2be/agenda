@@ -1,6 +1,6 @@
 Em.ENV.VIEW_PRESERVES_CONTEXT = true;
 
-Ag.ApplicationController = Ember.Controller.extend();
+Ag.ApplicationController = Em.Controller.extend();
 Ag.LoginController = Em.Controller.extend();
 Ag.MainController = Em.Controller.extend();
 
@@ -38,15 +38,15 @@ Em.State.reopen({
 
 Ag.Router = Em.Router.extend({
 
-  root: Ember.State.extend({
+  root: Em.Route.extend({
 
-    index: Ember.State.extend({
+    index: Em.Route.extend({
       route: '/',
       redirectsTo:'loggedOut',
 
     }),
 
-    loggedOut: Ember.State.extend({
+    loggedOut: Em.Route.extend({
 
       route: '/login',
 
@@ -56,11 +56,11 @@ Ag.Router = Em.Router.extend({
 
       connectOutlets: function(router, context) {
         var applicationController = router.get('applicationController');
-        applicationController.connectOutlet('app', Ag.LoginView);
+        applicationController.connectOutlet('login');
       }
     }),
 
-    loggedIn: Ember.State.extend({
+    loggedIn: Em.Route.extend({
 
       route: '/in',
 
@@ -68,11 +68,11 @@ Ag.Router = Em.Router.extend({
         router.transitionTo('root.loggedOut');
       },
 
-      inbox: Ember.State.extend({
+      inbox: Em.Route.extend({
         route: '/inbox',
         connectOutlets: function(router, context) {
           router.get('applicationController').connectOutlet(
-            'app', Ag.MainView);
+            'main');
         },
         enter: function(router) {
           this._super();
@@ -84,11 +84,11 @@ Ag.Router = Em.Router.extend({
         }
       }),
 
-      next: Ember.State.extend({
+      next: Em.Route.extend({
         route: '/next',
         connectOutlets: function(router, context) {
           router.get('applicationController').connectOutlet(
-            'app', Ag.MainView);
+            'main');
         },
         enter: function(router) {
           this._super();
@@ -100,11 +100,11 @@ Ag.Router = Em.Router.extend({
         }
       }),
 
-      starred: Ember.State.extend({
+      starred: Em.Route.extend({
         route: '/starred',
         connectOutlets: function(router, context) {
           router.get('applicationController').connectOutlet(
-            'app', Ag.MainView);
+            'main');
         },
         enter: function(router) {
           this._super();
@@ -116,11 +116,11 @@ Ag.Router = Em.Router.extend({
         }
       }),
 
-      scheduled: Ember.State.extend({
+      scheduled: Em.Route.extend({
         route: '/scheduled',
         connectOutlets: function(router, context) {
           router.get('applicationController').connectOutlet(
-            'app', Ag.MainView);
+            'main');
         },
         enter: function(router) {
           this._super();
@@ -132,11 +132,11 @@ Ag.Router = Em.Router.extend({
         }
       }),
 
-      someday: Ember.State.extend({
+      someday: Em.Route.extend({
         route: '/someday',
         connectOutlets: function(router, context) {
           router.get('applicationController').connectOutlet(
-            'app', Ag.MainView);
+            'main');
         },
         enter: function(router) {
           this._super();
@@ -148,11 +148,11 @@ Ag.Router = Em.Router.extend({
         }
       }),
 
-      archived: Ember.State.extend({
+      archived: Em.Route.extend({
         route: '/archived',
         connectOutlets: function(router, context) {
           router.get('applicationController').connectOutlet(
-            'app', Ag.MainView);
+            'main');
         },
         enter: function(router) {
           this._super();
@@ -164,11 +164,11 @@ Ag.Router = Em.Router.extend({
         }
       }),
 
-      trash: Ember.State.extend({
+      trash: Em.Route.extend({
         route: '/trash',
         connectOutlets: function(router, context) {
           router.get('applicationController').connectOutlet(
-            'app', Ag.MainView);
+            'main');
         },
         enter: function(router) {
           this._super();
