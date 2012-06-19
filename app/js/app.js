@@ -51,7 +51,7 @@ Ag.Router = Em.Router.extend({
       route: '/login',
 
       login: function() {
-        Ag.stateManager.transitionTo('loggedIn.inbox');
+        Ag.router.transitionTo('loggedIn.inbox');
       },
 
       connectOutlets: function(router, context) {
