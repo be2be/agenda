@@ -19,8 +19,8 @@ test("generateId()", function() {
   notEqual(id1, id2, "Generated IDs are not unique.");
 
   var id = Ag.Util.generateId();
-  ok(/^\d+.\d+$/.test(id), "Generated IDs do not match the expected pattern.");
+  ok(/^\d+:\d+$/.test(id), "Generated IDs do not match the expected pattern.");
 
   var id = Ag.Util.generateId("prefix");
-  ok(/^prefix:\d+.\d+$/.test(id), "Generated IDs do not match the expected pattern.");
+  ok(/^prefix:\d+:\d+$/.test(id), "Generated IDs do not match the expected pattern.");
 });

@@ -7,9 +7,9 @@ Ag.Util.generateId = (function() {
   return function(prefix) {
     var ret;
     if (prefix) {
-      ret = prefix + ":" + Date.now() + "." + i++;
+      ret = prefix + ":" + Date.now() + ":" + i++;
     } else {
-      ret = Date.now() + "." + i++;
+      ret = Date.now() + ":" + i++;
     }
     return ret;
   };
