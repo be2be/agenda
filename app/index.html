@@ -45,34 +45,40 @@
       <div class="row-fluid">
         <div id="sidebar" class="span2">
           <ul class="nav nav-list">
-            <li>
-              <a href="#/in/inbox">
-                <i class="icon-inbox"></i> Inbox <span class="badge pull-right" id="inbox-badge">1</span>
+            <li data-bind="with: folders['inbox'], css: { active: chosenFolderId() == 'inbox' }">
+              <a href="#/inbox">
+                <i class="icon-inbox"></i> Inbox <span class="badge pull-right" id="inbox-badge" data-bind="text: count()"></span>
               </a>
             </li>
             <li class="nav-header">Actions</li>
-            <li>
-              <a href="#/in/next"><i class="icon-arrow-right"></i> Next</a>
+            <li data-bind="css: { active: chosenFolderId() == 'next' }">
+              <a href="#/next"><i class="icon-arrow-right"></i> Next</a>
             </li>
-            <li>
-              <a href="#/in/starred"><i class="icon-star"></i> Starred</a>
+            <li data-bind="css: { active: chosenFolderId() == 'starred' }">
+              <a href="#/starred"><i class="icon-star"></i> Starred</a>
             </li>
-            <li>
-              <a href="#/in/scheduled"><i class="icon-calendar"></i> Scheduled</a>
+            <li data-bind="css: { active: chosenFolderId() == 'scheduled' }">
+              <a href="#/scheduled"><i class="icon-calendar"></i> Scheduled</a>
             </li>
-            <li>
-              <a href="#/in/someday"><i class="icon-road"></i> Someday</a>
+            <li data-bind="css: { active: chosenFolderId() == 'someday' }">
+              <a href="#/someday"><i class="icon-road"></i> Someday</a>
             </li>
 
             <li class="nav-header">Projects</li>
-            <li><a><i class="icon-th-list"></i> Project 1</a></li>
+            <!-- ko foreach: projects -->
+            <li data-bind="css: { active: $root.chosenFolderId() == id }">
+              <a data-bind="attr: { href: href }">
+                <i class="icon-th-list"></i> <span data-bind="text: title"/>
+              </a>
+            </li>
+            <!-- /ko -->
 
             <li class="nav-header">Completed</li>
-            <li>
-              <a href="#/in/archived"><i class="icon-book"></i> Archived</a>
+            <li data-bind="css: { active: chosenFolderId() == 'archived' }">
+              <a href="#/archived"><i class="icon-book"></i> Archived</a>
             </li>
-            <li>
-              <a  href="#/in/trash"><i class="icon-trash"></i> Trash</a>
+            <li data-bind="css: { active: chosenFolderId() == 'trash' }">
+              <a  href="#/trash"><i class="icon-trash"></i> Trash</a>
             </li>
           </ul>
         </div>
