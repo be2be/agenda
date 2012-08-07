@@ -2,17 +2,12 @@
                     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <script src="../app/lib/jquery-1.7.2.min.js"></script>
   <link rel="stylesheet" href="qunit.css" type="text/css" media="screen" />
   <script type="text/javascript" src="qunit.js"></script>
-
-  <script type="text/javascript" src="../app/lib/ember.js"></script>
-  <script type="text/javascript" src="../app/js/util.js"></script>
-  <script type="text/javascript" src="../app/js/todos.js"></script>
-  <script type="test/javascript" src="../app/js/app.js"></script>
-
-  <script type="text/javascript" src="util-test.js"></script>
-  <script type="text/javascript" src="todos-test.js"></script>
+  <script type="text/javascript">
+    QUnit.config.autostart = false;
+  </script>
+  <script data-main="tests.js" src="http://cdnjs.cloudflare.com/ajax/libs/require.js/2.0.2/require.min.js"></script>
 
   <script type="text/javascript">
     $(document).ready(function() {

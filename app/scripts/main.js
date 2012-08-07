@@ -1,22 +1,19 @@
 require.config({
-    baseUrl: 'lib',
+    baseUrl: 'scripts/',
     paths: {
-        agenda: '../js'
+        'jquery': 'http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js'
     },
     map: {
         '*': {
-            'jquery': 'http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js',
             'knockout': 'http://cdnjs.cloudflare.com/ajax/libs/knockout/2.1.0/knockout-min.js'
         }
     },
     shim: {
-        'bootstrap/js/bootstrap': {
+        'bootstrap': {
             deps: ['jquery']
         }
     }
 });
 
-require(['domReady!'],
-    function () {
-    }
-)
+require([], function () {
+});
