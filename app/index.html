@@ -19,8 +19,6 @@
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
 
-  <script data-main="scripts/main" src="http://cdnjs.cloudflare.com/ajax/libs/require.js/2.0.2/require.min.js"></script>
-
 </head>
 
 <body>
@@ -47,7 +45,7 @@
           <ul class="nav nav-list">
             <li data-bind="with: folders['inbox'], css: { active: chosenFolderId() == 'inbox' }">
               <a href="#/inbox">
-                <i class="icon-inbox"></i> Inbox <span class="badge pull-right" id="inbox-badge" data-bind="text: count()"></span>
+                <i class="icon-inbox"></i> Inbox <span class="badge pull-right" id="inbox-badge" data-bind="text: taskCount()"></span>
               </a>
             </li>
             <li class="nav-header">Actions</li>
@@ -82,11 +80,24 @@
             </li>
           </ul>
         </div>
-        <div id="tasklist" class="span10">
-
+        <div id="tasklist" class="span10"
+          data-bind="template: { name: folders[chosenFolderId()].template, data: folders[chosenFolderId()] }">
         </div>
       </div>
     </div>
+
+    <script type="text/html" id="inbox-template">
+      <!-- ko template: { name: 'itemList-template', data: tasks} -->
+      <!-- /ko -->
+    </script>
+
+    <script type="text/html" id="itemList-template">
+      <ul class="unstyled" data-bind="foreach: $data">
+        <li data-bind="text: title"></li>
+      </ul>
+    </script>
+
+  <script data-main="scripts/main" src="http://cdnjs.cloudflare.com/ajax/libs/require.js/2.0.2/require.min.js"></script>
 
 </body>
 </html>

@@ -1,4 +1,5 @@
-define(['knockout', 'sammy'], function (ko, sammy) {
+define(['knockout', 'sammy', './InboxViewModel', './NextViewModel'],
+function (ko, sammy, InboxViewModel, NextViewModel) {
     'use strict';
 
     var AppViewModel = function () {
@@ -6,10 +7,13 @@ define(['knockout', 'sammy'], function (ko, sammy) {
             app;
 
         self.chosenFolderId = ko.observable('inbox');
+        self.folderTemplate = ko.computed(function () {
+            return 'inbox-template';
+        });
 
         self.folders = {
-            'inbox': { count: ko.observable(5) },
-            'next': {},
+            'inbox': new InboxViewModel(),
+            'next': new NextViewModel(),
             'starred': {}
         };
 
