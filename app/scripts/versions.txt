@@ -1,0 +1,6 @@
+bootstrap 2.0.4
+domReady 2.0.0
+jquery 1.8.0
+knockout 2.1.0
+require 2.0.5
+sammy 0.7.1
