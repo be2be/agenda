@@ -12,13 +12,8 @@ require.config({
     }
 });
 
-require(['domReady!'],
+require(['tests/model/model', 'tests/model/dbTypes', 'domReady!'],
 function () {
     'use strict';
     QUnit.start();
-    QUnit.log = function(obj) {
-        if (window.console && window.console.log && obj.result === false) {
-          window.console.log(obj.result +' :: '+ obj.message);
-        }
-    };
 });
