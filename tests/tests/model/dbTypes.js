@@ -20,7 +20,7 @@ define(['agenda/model/dbTypes'], function (dbTypes) {
         strictEqual(task.starred, false, 'Default value of starred is false.');
         strictEqual(task.startsOn, null, 'No start date by default.');
         strictEqual(task.state, 'inbox', 'Default state is "inbox".');
-        deepEqual(task.tags, [], 'No tags by default.');
+        deepEqual(task.context, null, 'No context by default.');
         strictEqual(task.title, '', 'title is empty by default.');
 
         newTask = dbTypes.task({});

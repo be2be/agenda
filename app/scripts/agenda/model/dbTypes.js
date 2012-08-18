@@ -30,6 +30,12 @@ define(['underscore'], function (_) {
                            'someday', 'done', 'trash'];
         obj = obj || {};
 
+        if (_.isString(obj.context)) {
+            task.context = obj.context;
+        } else {
+            task.context = null;
+        }
+
         if (_.isDate(obj.date) || _.isNull(obj.date)) {
             task.dueOn = obj.dueOn;
         } else {
@@ -71,12 +77,6 @@ define(['underscore'], function (_) {
             task.state = obj.state;
         } else {
             task.state = 'inbox';
-        }
-
-        if (_.isArray(obj.tags) && _.all(obj.tags, _.isString)) {
-            task.tags = obj.tags;
-        } else {
-            task.tags = [];
         }
 
         if (_.isString(obj.title)) {

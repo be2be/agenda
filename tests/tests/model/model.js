@@ -14,11 +14,13 @@ function (model, _) {
         },
         nextTask1: {
             title: 'Next Task 1',
-            state: 'next'
+            state: 'next',
+            context: '@computer'
         },
         nextTask2: {
             title: 'Next Task 2',
-            state: 'next'
+            state: 'next',
+            context: '@home'
         }
     };
 
@@ -35,12 +37,18 @@ function (model, _) {
 
             stop();
             inTask = tasks.inboxTask1;
-            model.tasks.add(inTask, function (taskId) {
+            model.tasks.add(inTask).then(function (taskId) {
                 ok(taskPattern.test(taskId), 'A task was added and it has a valid ID');
-                model.tasks.get(taskId, function (task) {
+                model.tasks.get(taskId).then(function (task) {
                     equal(task.title, inTask.title, 'The task has the correct title.');
                     start();
+                }, function () {
+                    ok(false, 'get failed');
+                    start();
                 });
+            }, function () {
+                ok(false, 'add failed');
+                start();
             });
         });
 
@@ -48,13 +56,25 @@ function (model, _) {
             expect(2);
 
             stop();
-            model.tasks.get({ state: 'next' }, function (tasks) {
+            model.tasks.get({ state: 'next' }).then(function (tasks) {
                 ok(_.isArray(tasks) && tasks.length > 0,
                     'callback gets non-empty array of tasks.');
                 ok(_.all(tasks, function (task) { return task.state === 'next'; }),
                     'tasks have the correct state.');
                 start();
             });
+        });
+
+        test('contexts.getAll()', function () {
+            expect(1);
+
+            stop();
+            model.contexts.getAll().then(function (contexts) {
+                ok(_.all(['@computer', '@home'], function (context) {
+                    return _.include(contexts, context);
+                }));
+                start();
+            }, function () { start(); });
         });
 
     }, 1000);
