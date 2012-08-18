@@ -5,7 +5,9 @@ define(['underscore'], function (_) {
         project,
         task,
         projectPattern = /^project\.\d+\.\d+$/,
-        taskPattern = /^task\.\d+\.\d+$/;
+        taskPattern = /^task\.\d+\.\d+$/,
+        validStates = ['inbox', 'next', 'scheduled', 'waiting',
+                       'someday', 'done', 'trash'];
 
     generateId = (function() {
         var i = 0;
@@ -25,15 +27,19 @@ define(['underscore'], function (_) {
     };
 
     task = function(obj) {
-        var task = {},
-            validStates = ['inbox', 'next', 'scheduled', 'waiting',
-                           'someday', 'done', 'trash'];
+        var task = {};
         obj = obj || {};
 
         if (_.isString(obj.context)) {
             task.context = obj.context;
         } else {
             task.context = null;
+        }
+
+        if (_.isBoolean(obj.done)) {
+            task.done = obj.done;
+        } else {
+            task.done = false;
         }
 
         if (_.isDate(obj.date) || _.isNull(obj.date)) {
@@ -90,6 +96,7 @@ define(['underscore'], function (_) {
 
     return {
         task: task,
-        project: project
+        project: project,
+        validStates: validStates
     };
 });

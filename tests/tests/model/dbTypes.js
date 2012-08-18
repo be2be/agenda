@@ -9,11 +9,12 @@ define(['agenda/model/dbTypes'], function (dbTypes) {
     module('model:dbTypes');
 
     test('task()', function () {
-        expect(11);
+        expect(12);
         var task, newTask;
 
         task = dbTypes.task();
         strictEqual(task.dueOn, null, 'No due date by default.');
+        strictEqual(task.done, false, 'Default value of done is false.');
         ok(taskPattern.test(task.id), 'Id matches expected pattern.');
         strictEqual(task.notes, '', 'notes are empty by default.');
         strictEqual(task.project, null, 'No project by default.');
