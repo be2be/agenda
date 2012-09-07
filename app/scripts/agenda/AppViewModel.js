@@ -1,5 +1,5 @@
-define(['knockout', 'sammy', './InboxViewModel', './NextViewModel'],
-function (ko, sammy, InboxViewModel, NextViewModel) {
+define(['jquery', 'knockout', 'sammy', './InboxViewModel', './NextViewModel', './AddTaskViewModel'],
+function ($, ko, sammy, InboxViewModel, NextViewModel, AddTaskViewModel) {
     'use strict';
 
     var AppViewModel = function () {
@@ -27,6 +27,8 @@ function (ko, sammy, InboxViewModel, NextViewModel) {
                 })
             }
         ]);
+
+        self.addTaskDialog = new AddTaskViewModel('#newtask-modal');
 
         function goToFolder(folder) {
             self.chosenFolderId(folder);

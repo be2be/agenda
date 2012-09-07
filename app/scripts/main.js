@@ -13,7 +13,7 @@ require.config({
     }
 });
 
-require(['knockout', 'agenda/AppViewModel'],
+require(['knockout', 'agenda/AppViewModel', 'bootstrap'],
 function (ko, AppViewModel) {
     'use strict';
     ko.applyBindings(new AppViewModel());
